@@ -56,8 +56,8 @@ type Response struct {
 }
 
 type Orderbook struct {
-	Bids [][]float64 `json:"bids"`
-	Asks [][]float64 `json:"asks"`
+	Bids [][2]float64 `json:"bids"`
+	Asks [][2]float64 `json:"asks"`
 	// Action return update/partial
 	Action   string        `json:"action"`
 	Time     types.FtxTime `json:"time"`
