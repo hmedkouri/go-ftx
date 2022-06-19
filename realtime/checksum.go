@@ -8,17 +8,21 @@ import (
 
 // CalcPartialOBChecksum calculates checksum of partial OB data received from WS
 func CalcPartialOBChecksum(data *Orderbook) int64 {
+	return CalcPartialChecksum(data.Bids, data.Asks)
+}
+
+func CalcPartialChecksum(bids [][2]float64, asks [][2]float64) int64 {
 	var checksum strings.Builder
 	var price, amount string
 	for i := 0; i < 100; i++ {
-		if len(data.Bids)-1 >= i {
-			price = checksumParseNumber(data.Bids[i][0])
-			amount = checksumParseNumber(data.Bids[i][1])
+		if len(bids)-1 >= i {
+			price = checksumParseNumber(bids[i][0])
+			amount = checksumParseNumber(bids[i][1])
 			checksum.WriteString(price + ":" + amount + ":")
 		}
-		if len(data.Asks)-1 >= i {
-			price = checksumParseNumber(data.Asks[i][0])
-			amount = checksumParseNumber(data.Asks[i][1])
+		if len(asks)-1 >= i {
+			price = checksumParseNumber(asks[i][0])
+			amount = checksumParseNumber(asks[i][1])
 			checksum.WriteString(price + ":" + amount + ":")
 		}
 	}
