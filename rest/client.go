@@ -28,3 +28,11 @@ func New(auth *auth.Config) *Client {
 		HTTPTimeout: 5 * time.Second,
 	}
 }
+
+func NewWithClient(auth *auth.Config, hc *fasthttp.Client) *Client {
+	return &Client{
+		Auth:        auth,
+		HTTPC:       hc,
+		HTTPTimeout: 5 * time.Second,
+	}
+}
